@@ -1,0 +1,52 @@
+﻿<Window x:Class="mod2Lab3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:mod2Lab3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="670" Width="670">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <ToolBarTray Grid.Row="0">
+            <ToolBar Margin="5" Padding="5">
+                <ComboBox Width="200" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged">
+                    <TextBlock Text="Arial" FontFamily="Arial"/>
+                    <TextBlock Text="Times New Roman" FontFamily="Times New Roman"/>
+                    <TextBlock Text="Georgia" FontFamily="Georgia"/>
+                </ComboBox>
+                <ComboBox Width="50" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged_1">
+                    <TextBlock Text="10"/>
+                    <TextBlock Text="12"/>
+                    <TextBlock Text="14"/>
+                    <TextBlock Text="16"/>
+                    <TextBlock Text="20"/>
+                </ComboBox>
+            </ToolBar>
+            <ToolBar Margin="5" Padding="5">
+                <Button Margin="5" Click="Button_Click">
+                    <Image Source="Data\bold-text.png"/>
+                </Button>
+                <Separator/>
+                <Button Margin="5" Click="Button_Click_1">
+                    <Image Source="Data\italic.png" />
+                </Button>
+                <Separator/>
+                <Button Margin="5" Click="Button_Click_2">
+                    <Image Source="Data\underline.png"/>
+                </Button>
+            </ToolBar>
+            <ToolBar Width="Auto" Margin="5" Padding="5">
+                <StackPanel VerticalAlignment="Center" Margin="5">
+                    <RadioButton Content="Чёрный" IsChecked="True" Checked="RadioButton_Checked"/>
+                    <RadioButton Content="Красный" Checked="RadioButton_Checked_1"/>
+                </StackPanel>
+            </ToolBar>
+        </ToolBarTray>
+        
+        <TextBox x:Name="textBox" Margin="5" Padding="5" FontFamily="Arial" FontSize="10" Grid.Row="1" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" TextDecorations="{x:Null}"/>
+    </Grid>
+</Window>
