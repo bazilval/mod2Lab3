@@ -9,9 +9,18 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <ToolBarTray Grid.Row="0">
+        <Menu>
+            <MenuItem Header="_Файл">
+                <MenuItem Header="_Открыть" Click="MenuItem_Click"/>
+                <MenuItem Header="_Сохранить" Click="MenuItem_Click_1"/>
+                <Separator/>
+                <MenuItem Header="_Выход" Click="MenuItem_Click_2"/>
+            </MenuItem>
+        </Menu>
+        <ToolBarTray Grid.Row="1">
             <ToolBar Margin="5" Padding="5">
                 <ComboBox Width="200" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged">
                     <TextBlock Text="Arial" FontFamily="Arial"/>
@@ -47,6 +56,6 @@
             </ToolBar>
         </ToolBarTray>
         
-        <TextBox x:Name="textBox" Margin="5" Padding="5" FontFamily="Arial" FontSize="10" Grid.Row="1" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" TextDecorations="{x:Null}"/>
+        <TextBox x:Name="textBox" Margin="5" Padding="5" FontFamily="Arial" FontSize="10" Grid.Row="2" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" TextDecorations="{x:Null}"/>
     </Grid>
 </Window>
