@@ -22,6 +22,7 @@ namespace mod2Lab3
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string textCash;
         public MainWindow()
         {
             InitializeComponent();
@@ -88,7 +89,6 @@ namespace mod2Lab3
             }
 
         }
-
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
 
@@ -106,28 +106,39 @@ namespace mod2Lab3
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog openDialog = new OpenFileDialog();
             openDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
             if (openDialog.ShowDialog() == true)
             {
                 textBox.Text = File.ReadAllText(openDialog.FileName);
+                textCash = textBox.Text;
             }
         }
 
-        private void MenuItem_Click_1(object sender, RoutedEventArgs e)
+        private void SaveExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             SaveFileDialog saveDialog = new SaveFileDialog();
             saveDialog.Filter = "Текстовые файлы (*.txt)|*.txt|Все файлы (*.*)|*.*";
             if (saveDialog.ShowDialog() == true)
             {
                 File.WriteAllText(saveDialog.FileName, textBox.Text);
+                textCash = textBox.Text;
             }
-
         }
 
-        private void MenuItem_Click_2(object sender, RoutedEventArgs e)
+        private void SaveCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (textCash == textBox.Text)
+            {
+                e.CanExecute = false;
+            }
+            else
+                e.CanExecute = true;
+        }
+
+        private void ExitExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }

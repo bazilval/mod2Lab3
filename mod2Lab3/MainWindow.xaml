@@ -6,6 +6,13 @@
         xmlns:local="clr-namespace:mod2Lab3"
         mc:Ignorable="d"
         Title="MainWindow" Height="670" Width="670">
+    
+    <Window.CommandBindings>
+        <CommandBinding Command="Open" Executed="OpenExecuted"/>
+        <CommandBinding Command="Save" Executed="SaveExecuted" CanExecute="SaveCanExecute"/>
+        <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted"/>
+    </Window.CommandBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -14,10 +21,10 @@
         </Grid.RowDefinitions>
         <Menu>
             <MenuItem Header="_Файл">
-                <MenuItem Header="_Открыть" Click="MenuItem_Click"/>
-                <MenuItem Header="_Сохранить" Click="MenuItem_Click_1"/>
+                <MenuItem Command="Open"/>
+                <MenuItem Command="Save"/>
                 <Separator/>
-                <MenuItem Header="_Выход" Click="MenuItem_Click_2"/>
+                <MenuItem Command="local:MyCommands.Exit"/>
             </MenuItem>
         </Menu>
         <ToolBarTray Grid.Row="1">
