@@ -30,18 +30,21 @@ namespace mod2Lab3
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            FontFamily font = ((sender as ComboBox).SelectedItem as TextBlock).FontFamily;
-            if (textBox != null)
+            
+            if (textBox != null && fontBox != null)
             {
+                string fontName = this.fontBox.SelectionBoxItem.ToString();
+                FontFamily font = new FontFamily(fontName);
                 textBox.FontFamily = font;
             }
         }
 
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            int textSize = Int32.Parse(((sender as ComboBox).SelectedItem as TextBlock).Text);
-            if (textBox != null)
+            
+            if (textBox != null && sizeBox != null)
             {
+                int textSize = Int32.Parse(((sender as ComboBox).SelectedItem as TextBlock).Text);
                 textBox.FontSize = textSize;
             }
         }

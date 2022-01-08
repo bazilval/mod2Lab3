@@ -3,10 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:mod2Lab3"
+        xmlns:local="clr-namespace:mod2Lab3" xmlns:col="clr-namespace:System.Collections;assembly=mscorlib" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="670" Width="670">
-    
+
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="OpenExecuted"/>
         <CommandBinding Command="Save" Executed="SaveExecuted" CanExecute="SaveCanExecute"/>
@@ -29,18 +29,9 @@
         </Menu>
         <ToolBarTray Grid.Row="1">
             <ToolBar Margin="5" Padding="5">
-                <ComboBox Width="200" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged">
-                    <TextBlock Text="Arial" FontFamily="Arial"/>
-                    <TextBlock Text="Times New Roman" FontFamily="Times New Roman"/>
-                    <TextBlock Text="Georgia" FontFamily="Georgia"/>
+                <ComboBox x:Name="fontBox" Width="200" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource FontsList}">
                 </ComboBox>
-                <ComboBox Width="50" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged_1">
-                    <TextBlock Text="10"/>
-                    <TextBlock Text="12"/>
-                    <TextBlock Text="14"/>
-                    <TextBlock Text="16"/>
-                    <TextBlock Text="20"/>
-                </ComboBox>
+                <ComboBox x:Name="sizeBox"  Width="50" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource SizeList}"/>
             </ToolBar>
             <ToolBar Margin="5" Padding="5">
                 <Button Margin="5" Click="Button_Click">
