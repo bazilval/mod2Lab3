@@ -33,7 +33,7 @@ namespace mod2Lab3
             
             if (textBox != null && fontBox != null)
             {
-                string fontName = this.fontBox.SelectionBoxItem.ToString();
+                string fontName = (sender as ComboBox).SelectedItem as String;
                 FontFamily font = new FontFamily(fontName);
                 textBox.FontFamily = font;
             }
@@ -44,7 +44,7 @@ namespace mod2Lab3
             
             if (textBox != null && sizeBox != null)
             {
-                int textSize = Int32.Parse(((sender as ComboBox).SelectedItem as TextBlock).Text);
+                int textSize = Int32.Parse((sender as ComboBox).SelectedItem as String);
                 textBox.FontSize = textSize;
             }
         }
