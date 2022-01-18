@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mod2Lab3" xmlns:col="clr-namespace:System.Collections;assembly=mscorlib" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="670" Width="670">
-
+        Title="MainWindow" Height="670" Width="700">
+    
     <Window.CommandBindings>
         <CommandBinding Command="Open" Executed="OpenExecuted"/>
         <CommandBinding Command="Save" Executed="SaveExecuted" CanExecute="SaveCanExecute"/>
         <CommandBinding Command="local:MyCommands.Exit" Executed="ExitExecuted"/>
     </Window.CommandBindings>
 
-    <Grid>
+    <Grid Style="{DynamicResource WindowStyle}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -26,34 +26,38 @@
                 <Separator/>
                 <MenuItem Command="local:MyCommands.Exit"/>
             </MenuItem>
+            <MenuItem Header="_Вид">
+                <MenuItem x:Name="LightMenuItem" Header="Светлая тема" IsCheckable="True" Checked="MenuItem_Checked"/>
+                <MenuItem x:Name="DarkMenuItem" Header="Тёмная тема" IsCheckable="True" Checked="MenuItem_Checked"/>
+            </MenuItem>
         </Menu>
-        <ToolBarTray Grid.Row="1">
-            <ToolBar Margin="5" Padding="5">
-                <ComboBox x:Name="fontBox" Width="200" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource FontsList}">
+        <ToolBarTray Grid.Row="1" Style="{DynamicResource WindowStyle}">
+            <ToolBar Style="{DynamicResource IndentStyle}">
+                <ComboBox x:Name="fontBox" Width="200" SelectedIndex="0" Style="{DynamicResource BorderStyle}" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource FontsList}">
                 </ComboBox>
-                <ComboBox x:Name="sizeBox"  Width="50" SelectedIndex="0" Margin="5" Padding="5" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource SizeList}"/>
+                <ComboBox x:Name="sizeBox"  Width="50" SelectedIndex="0" Style="{DynamicResource BorderStyle}" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource SizeList}"/>
             </ToolBar>
-            <ToolBar Margin="5" Padding="5">
-                <Button Margin="5" Click="Button_Click">
+            <ToolBar Style="{DynamicResource IndentStyle}">
+                <Button Style="{DynamicResource BtnStyle}" Click="Button_Click">
                     <Image Source="Data\bold-text.png"/>
                 </Button>
                 <Separator/>
-                <Button Margin="5" Click="Button_Click_1">
+                <Button Style="{DynamicResource BtnStyle}" Click="Button_Click_1">
                     <Image Source="Data\italic.png" />
                 </Button>
                 <Separator/>
-                <Button Margin="5" Click="Button_Click_2">
+                <Button Style="{DynamicResource BtnStyle}" Click="Button_Click_2">
                     <Image Source="Data\underline.png"/>
                 </Button>
             </ToolBar>
-            <ToolBar Width="Auto" Margin="5" Padding="5">
+            <ToolBar Width="Auto" Style="{DynamicResource IndentStyle}">
                 <StackPanel VerticalAlignment="Center" Margin="5">
-                    <RadioButton Content="Чёрный" IsChecked="True" Checked="RadioButton_Checked"/>
-                    <RadioButton Content="Красный" Checked="RadioButton_Checked_1"/>
+                    <RadioButton x:Name="BlackRB" Style="{DynamicResource BlackRBStyle}" IsChecked="True" Checked="RadioButton_Checked"/>
+                    <RadioButton x:Name="RedRB" Style="{DynamicResource WindowStyle}" Content="Красный" Checked="RadioButton_Checked"/>
                 </StackPanel>
             </ToolBar>
         </ToolBarTray>
-        
-        <TextBox x:Name="textBox" Margin="5" Padding="5" FontFamily="Arial" FontSize="10" Grid.Row="2" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" TextDecorations="{x:Null}"/>
+
+        <TextBox Style="{DynamicResource TBStyle}" x:Name="textBox" FontFamily="Arial" FontSize="10" Grid.Row="2" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" TextDecorations="{x:Null}"/>
     </Grid>
 </Window>

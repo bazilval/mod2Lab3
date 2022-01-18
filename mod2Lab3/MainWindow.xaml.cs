@@ -26,11 +26,12 @@ namespace mod2Lab3
         public MainWindow()
         {
             InitializeComponent();
+            LightMenuItem.IsChecked = true;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+
             if (textBox != null && fontBox != null)
             {
                 string fontName = (sender as ComboBox).SelectedItem as String;
@@ -41,7 +42,7 @@ namespace mod2Lab3
 
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            
+
             if (textBox != null && sizeBox != null)
             {
                 int textSize = Int32.Parse((sender as ComboBox).SelectedItem as String);
@@ -94,21 +95,27 @@ namespace mod2Lab3
         }
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-
+            Brush br = Brushes.Black;
             if (textBox != null)
             {
-                textBox.Foreground = Brushes.Black;
+                switch ((sender as RadioButton).Content)
+                {
+                    case "Чёрный":
+                        br = Brushes.Black;
+                        break;
+                    case "Белый":
+                        br = Brushes.White;
+                        break;
+                    case "Красный":
+                        br = Brushes.Red;
+                        break;
+                }
+                {
+                    textBox.Foreground = br;
+                }
+
             }
         }
-
-        private void RadioButton_Checked_1(object sender, RoutedEventArgs e)
-        {
-            if (textBox != null)
-            {
-                textBox.Foreground = Brushes.Red;
-            }
-        }
-
         private void OpenExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             OpenFileDialog openDialog = new OpenFileDialog();
@@ -144,6 +151,41 @@ namespace mod2Lab3
         private void ExitExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void MenuItem_Checked(object sender, RoutedEventArgs e)
+        {
+
+            if (((sender as MenuItem).Header as string) == "Светлая тема")
+            {
+                DarkMenuItem.IsChecked = false;
+                textBox.Foreground = Brushes.Black;
+                
+            }
+            else
+            {
+                LightMenuItem.IsChecked = false;
+                textBox.Foreground = Brushes.Wheat;
+            }
+
+            ThemeChange((sender as MenuItem).Header as string);
+        }
+
+        private void ThemeChange(string themeName)
+        {
+            Uri ThemeUri = new Uri("LightTheme.xaml", UriKind.Relative);
+            if (themeName == "Тёмная тема")
+            {
+                ThemeUri = new Uri("DarkTheme.xaml", UriKind.Relative);
+            }
+
+            Uri FontUri = new Uri("FontsDictionary.xaml", UriKind.Relative);
+            ResourceDictionary FontsResource = Application.LoadComponent(FontUri) as ResourceDictionary;
+            ResourceDictionary ThemeResource = Application.LoadComponent(ThemeUri) as ResourceDictionary;
+            
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(FontsResource);
+            Application.Current.Resources.MergedDictionaries.Add(ThemeResource);
         }
     }
 }
