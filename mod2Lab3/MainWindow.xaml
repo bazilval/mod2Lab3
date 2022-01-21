@@ -33,9 +33,8 @@
         </Menu>
         <ToolBarTray Grid.Row="1" Style="{DynamicResource WindowStyle}">
             <ToolBar Style="{DynamicResource IndentStyle}">
-                <ComboBox x:Name="fontBox" Width="200" SelectedIndex="0" Style="{DynamicResource BorderStyle}" SelectionChanged="ComboBox_SelectionChanged" ItemsSource="{StaticResource FontsList}">
-                </ComboBox>
-                <ComboBox x:Name="sizeBox"  Width="50" SelectedIndex="0" Style="{DynamicResource BorderStyle}" SelectionChanged="ComboBox_SelectionChanged_1" ItemsSource="{StaticResource SizeList}"/>
+                <ComboBox x:Name="fontBox" Width="200" SelectedIndex="0" Style="{DynamicResource BorderStyle}" ItemsSource="{StaticResource FontsList}"/>
+                <ComboBox x:Name="sizeBox"  Width="50" SelectedIndex="0" Style="{DynamicResource BorderStyle}" ItemsSource="{StaticResource SizeList}"/>
             </ToolBar>
             <ToolBar Style="{DynamicResource IndentStyle}">
                 <Button Style="{DynamicResource BtnStyle}" Click="Button_Click">
@@ -58,6 +57,6 @@
             </ToolBar>
         </ToolBarTray>
 
-        <TextBox Style="{DynamicResource TBStyle}" x:Name="textBox" FontFamily="Arial" FontSize="10" Grid.Row="2" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" TextDecorations="{x:Null}"/>
+        <TextBox Style="{DynamicResource TBStyle}" x:Name="textBox" FontFamily="{Binding ElementName=fontBox, Path=SelectedItem}" FontSize="{Binding ElementName=sizeBox, Path=SelectedItem}" Grid.Row="2" VerticalScrollBarVisibility="Auto" TextWrapping="Wrap" AcceptsReturn="True" TextDecorations="{x:Null}"/>
     </Grid>
 </Window>
